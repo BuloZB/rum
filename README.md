@@ -10,31 +10,36 @@
 * libevent >=2.0
 
 ## Compilation
+```
 apt-get install libcdb-dev libevent-dev
-
 make
+```
 
 ## Usage
 ```
 ./rum -s tcp:host:port [-s tcp:host:port [-s sock:path]] -d tcp:host:port [-b] [-m tcp:host:port] [-M /path/to/mysql.cdb]
-    -s - listen host:port or sockfile (host muste be some ip address or 0.0.0.0 for all inerfaces)
+    -s - listen host:port or sock:path (host must be some ip address or 0.0.0.0 for all inerfaces)
     -d - destination host:port
 
     optional:
     -b - goto background
-    -m - statistics port
-    -M - enable handling of mysql connection with more destination servers, argument is path to cdb file
+    -m - statistics port (example: tcp:localhost:510)
+    -M - enable handling of mysql connection with more destination servers, argument is path to cdb file (-M /etc/rum/mysql.cdb)
 ```
 
 ## Examples
 
-* redirect port 110 to pop3.example.net:110
+* Simple tcp redirector: redirect port 110 to pop3.example.net:110
 
   `rum -s tcp:0.0.0.0:110 -d tcp:pop3.example.net:110 -b`
 
-* redirect port 3306 and /var/run/mysqld/mysqld.sock to 1.2.3.4:3306
+* MySQL reverse proxy: redirect port 3306 and /var/run/mysqld/mysqld.sock to destination server in mysql.cdb
 
-  `rum -s tcp:localhost:3306 -s sock:/var/run/mysqld/mysqld.sock -d tcp:1.2.3.4:3306 -b`
+  `rum -s tcp:localhost:3306 -s sock:/var/run/mysqld/mysqld.sock -d tcp:1.2.3.4:3306 -M /etc/rum/mysql.cdb -b`
+
+
+  As you see when you use cdb file you must also define one "default" destination server. From this server we store and re-use initial packet
+  from MySQL server and send it to client.
 
 ## Dns lookups
 hostname -> ip resolving is done only once at start, it is not refreshed.

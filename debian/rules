@@ -36,7 +36,7 @@ clean:
 build: 
 	set -ex 
 	mkdir -p "$(BUILD_DIR)"
-	cp -a `find . -maxdepth 1 -mindepth 1 -not -name debian` $(BUILD_DIR)
+	cp -a `find . -maxdepth 1 -mindepth 1 -not -name debian -and -not -name .git` $(BUILD_DIR)
 	dh_auto_build -D "$(BUILD_DIR)" -- -j`nproc`
 	dh_auto_install -D "$(BUILD_DIR)" -- -j1 
 	install -m 700 $(BUILD_DIR)/rum -D $(INSTALL_DIR)/usr/sbin/rum

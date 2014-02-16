@@ -1,3 +1,9 @@
+rum (3.0-0) UNRELEASED; urgency=low
+
+  * Version 3.0 - remove bundled libevent and use system libevent
+
+ -- Pavel Stano <stano@websupport.sk>  Sun, 16 Feb 2014 23:04:53 +0100
+
 rum (2.9-4) unstable; urgency=low
 
   * Improved reload support with regexp that handles also bind addr

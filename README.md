@@ -27,15 +27,15 @@ make
     -M - enable handling of mysql connection with more destination servers, argument is path to cdb file (-M /etc/rum/mysql.cdb)
 ```
 
-## Examples
+## Examples as simple tcp redirector
 
-* Simple tcp redirector: redirect port 110 to pop3.example.net:110
+* redirect port 110 to pop3.example.net:110
 
   `rum -s tcp:0.0.0.0:110 -d tcp:pop3.example.net:110 -b`
 
-* MySQL reverse proxy: redirect port 3306 and /var/run/mysqld/mysqld.sock to destination server in mysql.cdb
+* redirect port 3306 and /var/run/mysqld/mysqld.sock to destination server in mysql.cdb
 
-  `rum -s tcp:localhost:3306 -s sock:/var/run/mysqld/mysqld.sock -d tcp:1.2.3.4:3306 -M /etc/rum/mysql.cdb -b`
+  `rum -s tcp:localhost:3306 -s sock:/var/run/mysqld/mysqld.sock -d tcp:1.2.3.4:3306 -b`
 
 
   As you see when you use cdb file you must also define one "default" destination server. From this server we store and re-use initial packet

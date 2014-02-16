@@ -15,7 +15,8 @@ apt-get install libcdb-dev libevent-dev
 make
 
 ## Usage
-```./rum -s tcp:host:port [-s tcp:host:port [-s sock:path]] -d tcp:host:port [-b] [-m tcp:host:port] [-M /path/to/mysql.cdb]
+```
+./rum -s tcp:host:port [-s tcp:host:port [-s sock:path]] -d tcp:host:port [-b] [-m tcp:host:port] [-M /path/to/mysql.cdb]
     -s - listen host:port or sockfile (host muste be some ip address or 0.0.0.0 for all inerfaces)
     -d - destination host:port
 
